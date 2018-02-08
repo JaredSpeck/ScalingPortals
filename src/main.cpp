@@ -2,6 +2,8 @@
  * CPE 471 Final Project
  * Scaling portals
  * Jared Speck
+ * (Built with a provided template that implemented basic OpenGL initialization, window creation,
+ * matrix stack definition, and .obj file shape loading)
  * Spring 2017
  */
 
