@@ -8,7 +8,7 @@
 		<h1 align="center">CPE 471 Final Project - Scaling Portals</h1>
 		<h2 align="center">Jared Speck</h2>
 		<div align="center">
-			<img src="./thumb.jpg" alt="" style="height: auto; width: 10%; object-fit: contain"/>
+			<img src="./Website/thumb.jpg" alt="" style="height: auto; width: 10%; object-fit: contain"/>
 		</div>
 		<h3>Overview</h3>
 		<p>This project takes the texture rendering seen in Project 4, and expands on it. Similar to Project 4, the user uses the WASD keys and mouse to move and look around the world. However, instead of using Project 4's mirror, this project sets up a scene with 4 portals that make a box (no bottom or top faces). The portals are then paired, front face with back face, and left face with right face. Each face of the portal box displays the scene from the paired face's perspective, and will warp the camera to the paired face's location when walked through. Also among each pair is a transformation that can be seen by looking at the portal. This transformation, increasing or decreasing width or height, can be previewed by looking through the portal. By walking through a portal, the previewed transformation is then applied to the world. This effect can be reversed by traveling through the portal pair in the opposite direction.</p>
@@ -37,16 +37,16 @@
 		</ol>
 		<h3> Results </h3>
 		<div align="center">
-			<img src="./result1.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
-			<img src="./result2.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
-			<img src="./result3.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
+			<img src="./Website/result1.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
+			<img src="./Website/result2.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
+			<img src="./Website/result3.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
 		</div>
 		<p>The picture on the left shows the view of the user's camera looking into a portal with a scaling transformation. The transformation is previewed by the portal, allowing the user to see what the world would look like with the transform applied. The center image shows the user's view immediately after entering the scaling portal, with the transformation applied to the world. The image on the right shows the user once again at the same portal, but with the transformation applied and a preview of the world with the transform applied a second time.</p>
 		<h3>Optimization</h3>
 		<p>As each portal requires rendering the scene from the portal's perspective into a texture, adding many portals can be detrimental to performance. This slowdown can be seen by adding as few as 2 pairs for a single box. In order to help counteract this slowdown, the portal rendering was optimized to "cull" the portals not directly visible to the user's camera. Culling the occluded portals allows the program to avoid running the resource-intensive functions of warp-detection and texture rendering, as they are run by the portal via callbacks. Therefore, by culling the occluded portals, there is a significant framerate improvement while running the program, and the portal box still looks like a full box.</p>
 		<div align="center">
-			<img src="./opt1.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
-			<img src="./opt2.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
+			<img src="./Website/opt1.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
+			<img src="./Website/opt2.jpg" alt="" style="height: auto; width: 25%; object-fit: contain"/>
 		</div>
 		<p>To see this in action, change SHOW_REVERSE from 0 to 1 in the PortalBox.cpp. This will force the directly visible portals to no longer render, and the previously unrendered(occluded) portals to start rendering. The picture on the left shows the normal view for the optimized rendering, showing only the front faces. The picture on the right shows this reversed version where only the normally occluded portals are rendered.</p>
 	</body>
